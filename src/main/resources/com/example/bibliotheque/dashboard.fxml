@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="695.0" prefWidth="1185.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotheque.Controller.DashboardController">
+   <children>
+      <VBox prefHeight="695.0" prefWidth="208.0" style="-fx-background-color: rgb(63, 61, 86);">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="156.0" prefWidth="209.0" style="-fx-background-color: rgb(63, 61, 86);">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/booklover.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="25.0" top="10.0" />
+               </VBox.margin>
+            </Button>
+            <Button id="lecteursBtn" fx:id="lecteursBtn" mnemonicParsing="false" onAction="#getLecteursView" prefHeight="41.0" prefWidth="214.0" style="-fx-background-color: transparent;" text="Lecteurs" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Button>
+            <Button id="livresBtn" fx:id="livresBtn" mnemonicParsing="false" onAction="#getLivresView" prefHeight="41.0" prefWidth="214.0" style="-fx-background-color: transparent;" text="Livres" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Button>
+            <Button id="PretsBtn" fx:id="pretsBtn" mnemonicParsing="false" onAction="#getPretsView" prefHeight="41.0" prefWidth="214.0" style="-fx-background-color: transparent;" text="Prets" textFill="WHITE">
+               <font>
+                  <Font name="System Italic" size="17.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <TabPane id="onglets" fx:id="onglets" layoutX="226.0" layoutY="8.0" prefHeight="682.0" prefWidth="950.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab id="lecteursOnglet" fx:id="lecteursOnglet" text="lecteurs">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #ffffff;">
+                     <children>
+                        <TableView layoutX="6.0" layoutY="174.0" prefHeight="474.0" prefWidth="934.0">
+                          <columns>
+                            <TableColumn prefWidth="75.0" text="Numero" />
+                            <TableColumn prefWidth="162.4000244140625" text="Nom" />
+                              <TableColumn prefWidth="200.0" text="Prenom" />
+                              <TableColumn prefWidth="107.20001220703125" text="Naissance" />
+                              <TableColumn minWidth="0.0" prefWidth="127.20001220703125" text="Adresse" />
+                              <TableColumn minWidth="0.0" prefWidth="134.39990234375" text="Telephone" />
+                              <TableColumn minWidth="0.0" prefWidth="134.39990234375" text="Gerer" />
+                          </columns>
+                        </TableView>
+                        <ImageView fitHeight="169.0" fitWidth="222.0" layoutX="692.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/lecteurs.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="14.0" layoutY="131.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" text="Nouveau" />
+                        <Label layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="228.0" text="Lecteurs">
+                           <font>
+                              <Font size="43.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="14.0" layoutY="89.0" text="Tous les membres actuel de Tia boky." />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab id="livresOnglet" fx:id="livresOnglet" text="livres">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+          </Tab>
+            <Tab id="pretsOnglet" fx:id="pretsOnglet" text="prets">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>

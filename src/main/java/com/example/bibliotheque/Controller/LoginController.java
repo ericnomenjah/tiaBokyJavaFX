@@ -1,6 +1,7 @@
 package com.example.bibliotheque.Controller;
 
 import com.example.bibliotheque.Database.DatabaseConnection;
+import com.example.bibliotheque.View.Dashboard;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -61,7 +62,10 @@ public class LoginController {
 
             while(resultSet.next()){
                 if(resultSet.getInt(1)==1){
-
+                    Stage stage = (Stage) loginBtn.getScene().getWindow();
+                    stage.close();
+                    Dashboard dashboard = new Dashboard();
+                    dashboard.start(new Stage());
                 }else{
                     message.setText("Invalid login, please try again !!!");
                     message.setVisible(true);
@@ -71,6 +75,8 @@ public class LoginController {
         }catch (SQLException exception){
             exception.printStackTrace();
             exception.getCause();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
 
