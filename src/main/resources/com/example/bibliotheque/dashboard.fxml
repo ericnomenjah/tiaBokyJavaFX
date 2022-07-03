@@ -67,13 +67,14 @@
                               <Image url="@images/lecteurs.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="nouveauLecteur" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #00BFA6;" text="Nouveau" textFill="WHITE" />
+                        <Button fx:id="nouveauLecteur" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" onAction="#getAddLecteurView" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #00BFA6;" text="Nouveau" textFill="WHITE" />
                         <Label layoutX="14.0" layoutY="14.0" prefHeight="64.0" prefWidth="228.0" text="Lecteurs" textFill="#3f3d56">
                            <font>
                               <Font size="43.0" />
                            </font>
                         </Label>
                         <Label layoutX="14.0" layoutY="89.0" text="Tous les membres actuel de Tia boky." textFill="#3f3d56" />
+                        <Button fx:id="actualiserLecteurbtn" layoutX="128.0" layoutY="131.0" mnemonicParsing="false" onAction="#actualiserLecteurs" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(63, 61, 86);" text="Actualiser" textFill="WHITE" />
                      </children>
                   </AnchorPane>
             </content>
@@ -162,7 +163,7 @@
                               <Font name="Verdana" size="20.0" />
                            </font>
                         </Label>
-                        <Label fx:id="emailLecteurDetailLabel" layoutX="98.0" layoutY="471.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
+                        <Label fx:id="emailLecteurDetailLabel" layoutX="98.0" layoutY="471.0" prefHeight="42.0" prefWidth="513.0" text="prenomLecteur" textFill="#3f3d56">
                            <font>
                               <Font name="Verdana" size="20.0" />
                            </font>

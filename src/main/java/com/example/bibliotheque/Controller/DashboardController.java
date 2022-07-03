@@ -2,6 +2,7 @@ package com.example.bibliotheque.Controller;
 
 import com.example.bibliotheque.Model.Lecteur;
 import com.example.bibliotheque.Repository.LecteurRepository;
+import com.example.bibliotheque.View.AddLecteurModal;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,7 +21,7 @@ import java.util.ResourceBundle;
 public class DashboardController implements Initializable {
     Stage stage;
     @FXML
-    private Button lecteursBtn, livresBtn, pretsBtn;
+    private Button lecteursBtn, livresBtn, pretsBtn, nouveauLecteur;
     @FXML
     private Tab lecteursOnglet,livresOnglet,pretsOnglet,lecteurDetailsOnglet;
     @FXML
@@ -78,6 +79,17 @@ public class DashboardController implements Initializable {
     }
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    @FXML
+    void getAddLecteurView(ActionEvent event) throws Exception {
+        AddLecteurModal addLecteurModal = new AddLecteurModal();
+        addLecteurModal.start(new Stage());
+    }
+
+    @FXML
+    void actualiserLecteurs(ActionEvent event) {
+        actualiserLecteurTable();
     }
 
     @Override
