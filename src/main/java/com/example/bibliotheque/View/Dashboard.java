@@ -17,6 +17,7 @@ public class Dashboard extends Application {
         Parent root = loader.load();
 
         DashboardController dashboardController = loader.getController();
+        dashboardController.initDashboard();
 
         dashboardController.setStage(primaryStage);
 

@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import org.w3c.dom.events.MouseEvent;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -76,7 +75,8 @@ public class LoginController {
             exception.printStackTrace();
             exception.getCause();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            e.getCause();
         }
 
 
