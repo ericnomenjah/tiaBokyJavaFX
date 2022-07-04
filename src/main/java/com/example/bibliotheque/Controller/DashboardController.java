@@ -2,8 +2,11 @@ package com.example.bibliotheque.Controller;
 
 import com.example.bibliotheque.Application;
 import com.example.bibliotheque.Model.Lecteur;
+import com.example.bibliotheque.Model.Livre;
 import com.example.bibliotheque.Repository.LecteurRepository;
+import com.example.bibliotheque.Repository.LivreRepository;
 import com.example.bibliotheque.View.AddLecteurModal;
+import com.example.bibliotheque.View.AddLivreModal;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,16 +33,18 @@ public class DashboardController implements Initializable {
     @FXML
     private Button lecteursBtn, livresBtn, pretsBtn, nouveauLecteur;
     @FXML
-    private Tab lecteursOnglet,livresOnglet,pretsOnglet,lecteurDetailsOnglet;
+    private Tab lecteursOnglet,livresOnglet,pretsOnglet,lecteurDetailsOnglet,livreDetailsOnglet;
     @FXML
     private TabPane onglets;
 
     @FXML
-    private Label numeroLecteurDetailLabel,nomLecteurDetailLabel,prenomLecteurDetailLabel,naissanceLecteurDetailLabel,adresseLecteurDetailLabel,emailLecteurDetailLabel,telephoneLecteurDetailLabel,pretLecteurDetailLabel;
+    private Label numeroLecteurDetailLabel,nomLecteurDetailLabel,prenomLecteurDetailLabel,naissanceLecteurDetailLabel,
+            adresseLecteurDetailLabel,emailLecteurDetailLabel,telephoneLecteurDetailLabel,pretLecteurDetailLabel,
+            numeroLivreDetailLabel,titreLivreDetailLabel,autheurLivreDetailLabel,editionLivreDetailLabel, disponibleLivreDetailLabel,
+            nbPretLivreDetailLabel;
 
     @FXML
     private TableView <Lecteur> lecteursTable;
-
     @FXML
     private TableColumn<Lecteur, Integer> numeroLecteurCol;
     @FXML
@@ -52,8 +57,25 @@ public class DashboardController implements Initializable {
     private TableColumn<Lecteur, String> emailLecteurCol;
     @FXML
     private TableColumn<Lecteur, String> manageLecteurCol;
-
     ObservableList<Lecteur> listLecteurs;
+
+    @FXML
+    private TableView <Livre> livresTable;
+    @FXML
+    private TableColumn<Livre, Integer> numeroLivreCol;
+    @FXML
+    private TableColumn<Livre, String> titreLivreCol;
+    @FXML
+    private TableColumn<Livre, String> autheurLivreCol;
+    @FXML
+    private TableColumn<Livre, String> editionLivreCol;
+    @FXML
+    private TableColumn<Livre, String> disponibleLivreCol;
+    @FXML
+    private TableColumn<Livre, String> nbPretLivreCol;
+    @FXML
+    private TableColumn<Livre, String> manageLivreCol;
+    ObservableList<Livre> listLivres;
 
     @FXML
     void getLecteursView(ActionEvent event) {
@@ -93,6 +115,11 @@ public class DashboardController implements Initializable {
         AddLecteurModal addLecteurModal = new AddLecteurModal();
         addLecteurModal.start(new Stage());
     }
+    @FXML
+    void getAddLivreView(ActionEvent event) throws Exception {
+        AddLivreModal addLivreModal = new AddLivreModal();
+        addLivreModal.start(new Stage());
+    }
 
     @FXML
     void getUpdateLecteurView(ActionEvent event) throws IOException, SQLException {
@@ -121,15 +148,72 @@ public class DashboardController implements Initializable {
         stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
+    @FXML
+    void modifierLivre(ActionEvent event) throws IOException, SQLException {
+        //Afficher le modal && initialiser les champs
+        AddLivreModal addLivreModal = new AddLivreModal();
+
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("addLivre.fxml"));
+        loader.load();
+        AddLivreController addLivreController = loader.getController();
+
+        LivreRepository livreRepository = new LivreRepository();
+
+        Livre livre = livreRepository.getLivreByNumero(numeroLivreDetailLabel.getText());
+
+        addLivreController.initializeFormulaireForUpdate(
+                livre.getNumero(),
+                livre.getTitre(),
+                livre.getAutheur(),
+                livre.getEdition()
+
+        );
+
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
+    }
 
     @FXML
     void actualiserLecteurs(ActionEvent event) {
         actualiserLecteurTable();
     }
+    @FXML
+    void actualiserInfoLecteur(ActionEvent event) throws SQLException {
+        LecteurRepository lecteurRepository = new LecteurRepository();
+        Lecteur lecteur = lecteurRepository.getLecteurByNumero(numeroLecteurDetailLabel.getText());
+        nomLecteurDetailLabel.setText(lecteur.getNom());
+        prenomLecteurDetailLabel.setText(lecteur.getPrenom());
+        naissanceLecteurDetailLabel.setText(lecteur.getNaissance().toString());
+        adresseLecteurDetailLabel.setText(lecteur.getAdresse());
+        emailLecteurDetailLabel.setText(lecteur.getEmail());
+        telephoneLecteurDetailLabel.setText(lecteur.getTelephone());
+    }
+    @FXML
+    void actualiserInfoLivre(ActionEvent event) throws SQLException {
+        LivreRepository livreRepository = new LivreRepository();
+        Livre livre = livreRepository.getLivreByNumero(numeroLivreDetailLabel.getText());
+        titreLivreDetailLabel.setText(livre.getTitre());
+        autheurLivreDetailLabel.setText(livre.getAutheur());
+        editionLivreDetailLabel.setText(livre.getEdition());
+        disponibleLivreDetailLabel.setText(livre.getFormattedDisponible());
+        nbPretLivreDetailLabel.setText(String.valueOf(livre.getNbPret()));
+    }
+
+    @FXML
+    void actualiserLivre(ActionEvent event) {
+        actualiserLivreTable();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //TODO
+        initialiserLecteurTable();
+        initialiserLivreTable();
+    }
+
+    private void initialiserLecteurTable(){
         actualiserLecteurTable();
 
         numeroLecteurCol.setCellValueFactory(new PropertyValueFactory<Lecteur, Integer>("numero"));
@@ -188,6 +272,70 @@ public class DashboardController implements Initializable {
             return cell;
         };
         manageLecteurCol.setCellFactory(cellFactory);
+    }
+
+    private void initialiserLivreTable(){
+        actualiserLivreTable();
+        numeroLivreCol.setCellValueFactory(new PropertyValueFactory<Livre, Integer>("numero"));
+        titreLivreCol.setCellValueFactory(new PropertyValueFactory<Livre, String>("titre"));
+        autheurLivreCol.setCellValueFactory(new PropertyValueFactory<Livre, String>("autheur"));
+        editionLivreCol.setCellValueFactory(new PropertyValueFactory<Livre, String>("edition"));
+        disponibleLivreCol.setCellValueFactory(new PropertyValueFactory<Livre, String>("disponible"));
+        nbPretLivreCol.setCellValueFactory(new PropertyValueFactory<Livre, String>("nbPret"));
+
+        Callback<TableColumn<Livre, String>, TableCell<Livre, String>> cellFactory = (TableColumn<Livre, String> param) -> {
+//Make cell containing buttons
+            final TableCell<Livre, String> cell = new TableCell<Livre, String>(){
+                @Override
+                public void updateItem(String item, boolean empty){
+                    super.updateItem(item, empty);
+                    if(empty){
+                        setGraphic(null);
+                        setText(null);
+                    }else{
+                        Button btnVoirLivre = new Button("Details");
+                        Button btnSupprimerLivre = new Button("Supprimer");
+
+                        btnVoirLivre.setStyle("-fx-cursor: hand;-fx-text-fill: #ffffff ;-fx-background-color: #00BFA6 ");
+                        btnSupprimerLivre.setStyle("-fx-cursor: hand; -fx-text-fill: #fff ; -fx-background-color:  #F50057 ");
+
+                        btnSupprimerLivre.setOnMouseClicked((MouseEvent event) ->{
+                            Livre livre = livresTable.getSelectionModel().getSelectedItem();
+                            LivreRepository livreRepository = new LivreRepository();
+                            livreRepository.delete(livre);
+                            actualiserLivreTable();
+                        });
+
+                        btnVoirLivre.setOnMouseClicked((MouseEvent event) -> {
+                            Livre livre = livresTable.getSelectionModel().getSelectedItem();
+                            initColorButton();
+                            livresBtn.setStyle("-fx-background-color: #00BFA6");
+                            onglets.getSelectionModel().select(livreDetailsOnglet);
+                            numeroLivreDetailLabel.setText(String.valueOf(livre.getNumero()));
+                            titreLivreDetailLabel.setText(livre.getTitre());
+                            autheurLivreDetailLabel.setText(livre.getAutheur());
+                            disponibleLivreDetailLabel.setText(livre.getFormattedDisponible());
+                            nbPretLivreDetailLabel.setText(String.valueOf(livre.getNbPret()));
+                        });
+
+                        HBox voirBtnContainer = new HBox(btnVoirLivre,btnSupprimerLivre);
+                        voirBtnContainer.setStyle("-fx-alignment:center");
+                        HBox.setMargin(btnVoirLivre, new Insets(1, 1, 1, 1));
+                        HBox.setMargin(btnSupprimerLivre, new Insets(1, 1, 1, 1));
+                        setGraphic(voirBtnContainer);
+                        setText(null);
+                    }
+                }
+            };
+            return cell;
+        };
+        manageLivreCol.setCellFactory(cellFactory);
+    }
+
+    private void actualiserLivreTable() {
+        LivreRepository livreRepository = new LivreRepository();
+        listLivres = livreRepository.getLivres();
+        livresTable.setItems(listLivres);
     }
 
     private void actualiserLecteurTable() {
