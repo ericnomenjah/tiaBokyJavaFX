@@ -23,7 +23,6 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -154,6 +153,13 @@ public class DashboardController implements Initializable {
 
                         btnVoirLecteur.setStyle("-fx-cursor: hand;-fx-text-fill: #ffffff ;-fx-background-color: #00BFA6 ");
                         btnSupprimerLecteur.setStyle("-fx-cursor: hand; -fx-text-fill: #fff ; -fx-background-color:  #F50057 ");
+
+                        btnSupprimerLecteur.setOnMouseClicked((MouseEvent event) ->{
+                            Lecteur lecteur = lecteursTable.getSelectionModel().getSelectedItem();
+                            LecteurRepository lecteurRepository = new LecteurRepository();
+                            lecteurRepository.delete(lecteur);
+                            actualiserLecteurTable();
+                        });
 
                         btnVoirLecteur.setOnMouseClicked((MouseEvent event) -> {
                             Lecteur lecteur = lecteursTable.getSelectionModel().getSelectedItem();

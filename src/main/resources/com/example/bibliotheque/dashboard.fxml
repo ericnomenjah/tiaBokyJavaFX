@@ -184,6 +184,7 @@
                            </image>
                         </ImageView>
                         <Button fx:id="modifierLecteurBtn" layoutX="11.0" layoutY="539.0" mnemonicParsing="false" onAction="#getUpdateLecteurView" prefHeight="26.0" prefWidth="242.0" style="-fx-background-color: #00BFA6;" text="Modifier" textFill="WHITE" />
+                        <Button fx:id="actualiser" layoutX="273.0" layoutY="539.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="242.0" style="-fx-background-color: rgb(63, 61, 86);" text="actualiser" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </content>
