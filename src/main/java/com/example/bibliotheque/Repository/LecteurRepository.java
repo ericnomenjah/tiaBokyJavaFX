@@ -53,4 +53,50 @@ public class LecteurRepository {
             e.getCause();
         }
     }
+
+    public Lecteur getLecteurByNumero(String numero) throws SQLException {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = "SELECT * from lecteurs WHERE numero="+ numero;
+        System.out.println(query);
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        ResultSet resultSet = preparedStatement.executeQuery(query);
+        Lecteur lecteur = null;
+
+        while(resultSet.next()){
+            lecteur = new Lecteur(
+                    Integer.parseInt(resultSet.getString("numero")),
+                    resultSet.getString("nom"),
+                    resultSet.getString("prenom"),
+                    resultSet.getDate("naissance"),
+                    resultSet.getString("adresse"),
+                    resultSet.getString("email"),
+                    resultSet.getString("telephone")
+            );
+        }
+
+        return lecteur;
+    }
+
+    public void updateLecteur(String numero, String nom, String prenom, String naissance, String adresse, String email, String telephone) {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = "UPDATE lecteurs SET nom=?,prenom=?,naissance=?,adresse=?,telephone=?, email=? WHERE numero =" + numero;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,nom);
+            preparedStatement.setString(2,prenom);
+            preparedStatement.setString(3,String.valueOf(naissance));
+            preparedStatement.setString(4,adresse);
+            preparedStatement.setString(5,telephone);
+            preparedStatement.setString(6,email);
+
+            preparedStatement.execute();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Information du Lecteur Mis à jour!");
+            alert.show();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
+    }
 }

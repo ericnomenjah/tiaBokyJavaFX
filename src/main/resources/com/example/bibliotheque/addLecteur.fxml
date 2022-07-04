@@ -12,7 +12,7 @@
    <children>
       <Pane prefHeight="67.0" prefWidth="602.0" style="-fx-background-color: rgb(63, 61, 86);">
          <children>
-            <Label contentDisplay="CENTER" layoutX="192.0" layoutY="11.0" prefHeight="46.0" prefWidth="245.0" style="-fx-text-alignment: center;" text="Nouveau Membre" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="titreModalLecteur" contentDisplay="CENTER" layoutX="10.0" layoutY="11.0" prefHeight="46.0" prefWidth="570.0" style="-fx-text-alignment: center;" text="Nouveau Membre" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Verdana" size="23.0" />
                </font>
@@ -41,5 +41,6 @@
       </Button>
       <Label layoutX="21.0" layoutY="267.0" prefHeight="18.0" prefWidth="97.0" text="Email" />
       <TextField fx:id="emailField" layoutX="132.0" layoutY="263.0" prefHeight="26.0" prefWidth="442.0" />
+      <Label fx:id="numeroLabel" layoutX="29.0" layoutY="308.0" prefHeight="18.0" prefWidth="97.0" text="numero" visible="false" />
    </children>
 </AnchorPane>

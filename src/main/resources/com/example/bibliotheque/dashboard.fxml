@@ -103,74 +103,74 @@
                               <Image url="@images/lecteur.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="14.0" layoutY="265.0" prefHeight="49.0" prefWidth="66.0" text="Nom:" textFill="#3f3d56">
+                        <Label layoutX="14.0" layoutY="247.0" prefHeight="49.0" prefWidth="66.0" text="Nom:" textFill="#3f3d56">
                            <font>
                               <Font name="Verdana Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="14.0" layoutY="303.0" prefHeight="42.0" prefWidth="91.0" text="Prenom :" textFill="#3f3d56">
+                        <Label layoutX="14.0" layoutY="285.0" prefHeight="42.0" prefWidth="91.0" text="Prenom :" textFill="#3f3d56">
                            <font>
                               <Font name="Verdana Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="11.0" layoutY="345.0" prefHeight="42.0" prefWidth="187.0" text="Date de Naissance :" textFill="#3f3d56">
+                        <Label layoutX="11.0" layoutY="327.0" prefHeight="42.0" prefWidth="187.0" text="Date de Naissance :" textFill="#3f3d56">
                            <font>
                               <Font name="Verdana Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="387.0" prefHeight="42.0" prefWidth="100.0" text="Adresse :" textFill="#3f3d56">
+                        <Label layoutX="10.0" layoutY="369.0" prefHeight="42.0" prefWidth="100.0" text="Adresse :" textFill="#3f3d56">
                            <font>
                               <Font name="Verdana Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="7.0" layoutY="471.0" prefHeight="42.0" prefWidth="91.0" text="Email:" textFill="#3f3d56">
+                        <Label layoutX="7.0" layoutY="453.0" prefHeight="42.0" prefWidth="91.0" text="Email:" textFill="#3f3d56">
                            <font>
                               <Font name="Verdana Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="6.0" layoutY="515.0" prefHeight="42.0" prefWidth="120.0" text="Telephone :" textFill="#3f3d56">
+                        <Label layoutX="6.0" layoutY="497.0" prefHeight="42.0" prefWidth="120.0" text="Telephone :" textFill="#3f3d56">
                            <font>
                               <Font name="Verdana Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label layoutX="11.0" layoutY="429.0" prefHeight="42.0" prefWidth="242.0" text="Nombre de pret effectué :" textFill="#3f3d56">
+                        <Label layoutX="11.0" layoutY="411.0" prefHeight="42.0" prefWidth="242.0" text="Nombre de pret effectué :" textFill="#3f3d56">
                            <font>
                               <Font name="Verdana Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nomLecteurDetailLabel" layoutX="71.0" layoutY="268.0" prefHeight="42.0" prefWidth="363.0" text="Nom:" textFill="#3f3d56">
+                        <Label fx:id="nomLecteurDetailLabel" layoutX="71.0" layoutY="250.0" prefHeight="42.0" prefWidth="363.0" text="Nom:" textFill="#3f3d56">
                            <font>
-                              <Font name="Verdana" size="20.0" />
+                              <Font name="Verdana" size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="prenomLecteurDetailLabel" layoutX="96.0" layoutY="303.0" prefHeight="42.0" prefWidth="363.0" text="prenomLecteur" textFill="#3f3d56">
+                        <Label fx:id="prenomLecteurDetailLabel" layoutX="96.0" layoutY="285.0" prefHeight="42.0" prefWidth="363.0" text="prenomLecteur" textFill="#3f3d56">
                            <font>
-                              <Font name="Verdana" size="20.0" />
+                              <Font name="Verdana" size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="naissanceLecteurDetailLabel" layoutX="198.0" layoutY="345.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
+                        <Label fx:id="naissanceLecteurDetailLabel" layoutX="198.0" layoutY="327.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
                            <font>
-                              <Font name="Verdana" size="20.0" />
+                              <Font name="Verdana" size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="adresseLecteurDetailLabel" layoutX="100.0" layoutY="387.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
+                        <Label fx:id="adresseLecteurDetailLabel" layoutX="100.0" layoutY="369.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
                            <font>
-                              <Font name="Verdana" size="20.0" />
+                              <Font name="Verdana" size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="pretLecteurDetailLabel" layoutX="253.0" layoutY="429.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
+                        <Label fx:id="pretLecteurDetailLabel" layoutX="253.0" layoutY="411.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
                            <font>
-                              <Font name="Verdana" size="20.0" />
+                              <Font name="Verdana" size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="emailLecteurDetailLabel" layoutX="98.0" layoutY="471.0" prefHeight="42.0" prefWidth="513.0" text="prenomLecteur" textFill="#3f3d56">
+                        <Label fx:id="emailLecteurDetailLabel" layoutX="98.0" layoutY="453.0" prefHeight="42.0" prefWidth="513.0" text="prenomLecteur" textFill="#3f3d56">
                            <font>
-                              <Font name="Verdana" size="20.0" />
+                              <Font name="Verdana" size="11.0" />
                            </font>
                         </Label>
-                        <Label fx:id="telephoneLecteurDetailLabel" layoutX="118.0" layoutY="515.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
+                        <Label fx:id="telephoneLecteurDetailLabel" layoutX="118.0" layoutY="497.0" prefHeight="42.0" prefWidth="196.0" text="prenomLecteur" textFill="#3f3d56">
                            <font>
-                              <Font name="Verdana" size="20.0" />
+                              <Font name="Verdana" size="11.0" />
                            </font>
                         </Label>
                         <Label fx:id="numeroLecteurDetailLabel" layoutX="459.0" layoutY="14.0" prefHeight="64.0" prefWidth="155.0" text="numero" textFill="#3f3d56">
@@ -178,11 +178,12 @@
                               <Font size="43.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="205.0" fitWidth="369.0" layoutX="14.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="187.0" fitWidth="369.0" layoutX="7.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/info%20personal.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="modifierLecteurBtn" layoutX="11.0" layoutY="539.0" mnemonicParsing="false" onAction="#getUpdateLecteurView" prefHeight="26.0" prefWidth="242.0" style="-fx-background-color: #00BFA6;" text="Modifier" textFill="WHITE" />
                      </children>
                   </AnchorPane>
                </content>

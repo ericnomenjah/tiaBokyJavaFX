@@ -1,21 +1,29 @@
 package com.example.bibliotheque.Controller;
 
+import com.example.bibliotheque.Application;
 import com.example.bibliotheque.Model.Lecteur;
 import com.example.bibliotheque.Repository.LecteurRepository;
 import com.example.bibliotheque.View.AddLecteurModal;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -85,6 +93,34 @@ public class DashboardController implements Initializable {
     void getAddLecteurView(ActionEvent event) throws Exception {
         AddLecteurModal addLecteurModal = new AddLecteurModal();
         addLecteurModal.start(new Stage());
+    }
+
+    @FXML
+    void getUpdateLecteurView(ActionEvent event) throws IOException, SQLException {
+        //Afficher le modal && initialiser les champs
+        AddLecteurModal addLecteurModal = new AddLecteurModal();
+        FXMLLoader loader = new FXMLLoader(Application.class.getResource("addLecteur.fxml"));
+        loader.load();
+        AddLecteurController addLecteurController = loader.getController();
+
+        LecteurRepository lecteurRepository = new LecteurRepository();
+        Lecteur lecteur = lecteurRepository.getLecteurByNumero(numeroLecteurDetailLabel.getText());
+
+        addLecteurController.initializeFormulaireForUpdate(
+                lecteur.getNumero(),
+                lecteur.getNom(),
+                lecteur.getPrenom(),
+                lecteur.getNaissance().toLocalDate(),
+                lecteur.getAdresse(),
+                lecteur.getEmail(),
+                lecteur.getTelephone()
+        );
+
+        Parent parent = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(parent));
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.show();
     }
 
     @FXML
