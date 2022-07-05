@@ -20,16 +20,16 @@ public class Lecteur {
     String adresse;
     Date naissance;
 
-    public Lecteur(int numero, String nom, String prenom, Date naissance, String adresse, String email, String telephone) {
+    public Lecteur(int numero, String nom, String prenom, Date naissance, String adresse, String email, String telephone, int pretActuel, int nombrePret) {
         this.numero = numero;
-        this.pretActuel = 0;
-        this.nombrePret = 0;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.telephone = telephone;
         this.naissance = naissance;
         this.adresse = adresse;
+        this.pretActuel = pretActuel;
+        this.nombrePret = nombrePret;
     }
 
     public int getNumero() {

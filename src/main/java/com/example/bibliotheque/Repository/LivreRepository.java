@@ -108,4 +108,44 @@ public class LivreRepository {
             exception.getCause();
         }
     }
+
+    public ObservableList<String> getLivresDisponible() {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+
+        ObservableList<String> listLivres = FXCollections.observableArrayList();
+        String query = "SELECT * FROM livres WHERE disponible= 1";
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                Livre livre = new Livre(
+                        Integer.parseInt(resultSet.getString("numero")),
+                        resultSet.getString("titre"),
+                        resultSet.getString("autheur"),
+                        resultSet.getString("edition"),
+                        resultSet.getBoolean("disponible"),
+                        Integer.parseInt(resultSet.getString("nbPret"))
+                );
+                listLivres.add(livre.getNumero() + " " + livre.getAutheur() + " " + livre.getEdition());
+            }
+        }catch (Exception exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
+        return listLivres;
+    }
+
+    public void incrementPret(String livreNumero) {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = " UPDATE livres SET disponible=0, nbPret=(nbPret+1) WHERE numero="+ livreNumero;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.execute();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
+    }
 }

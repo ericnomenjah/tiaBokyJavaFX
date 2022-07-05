@@ -7,6 +7,7 @@ import com.example.bibliotheque.Repository.LecteurRepository;
 import com.example.bibliotheque.Repository.LivreRepository;
 import com.example.bibliotheque.View.AddLecteurModal;
 import com.example.bibliotheque.View.AddLivreModal;
+import com.example.bibliotheque.View.AddPretModal;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -122,6 +123,12 @@ public class DashboardController implements Initializable {
     }
 
     @FXML
+    void getAddPretView(ActionEvent event) throws Exception {
+        AddPretModal addPretModal = new AddPretModal();
+        addPretModal.start(new Stage());
+    }
+
+    @FXML
     void getUpdateLecteurView(ActionEvent event) throws IOException, SQLException {
         //Afficher le modal && initialiser les champs
         AddLecteurModal addLecteurModal = new AddLecteurModal();
@@ -190,6 +197,8 @@ public class DashboardController implements Initializable {
         adresseLecteurDetailLabel.setText(lecteur.getAdresse());
         emailLecteurDetailLabel.setText(lecteur.getEmail());
         telephoneLecteurDetailLabel.setText(lecteur.getTelephone());
+        pretLecteurDetailLabel.setText(String.valueOf(lecteur.getNombrePret()));
+        System.out.println(lecteur.getNombrePret());
     }
     @FXML
     void actualiserInfoLivre(ActionEvent event) throws SQLException {
@@ -211,6 +220,7 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initialiserLecteurTable();
         initialiserLivreTable();
+
     }
 
     private void initialiserLecteurTable(){

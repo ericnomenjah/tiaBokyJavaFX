@@ -30,7 +30,9 @@ public class LecteurRepository {
                         resultSet.getDate("naissance"),
                         resultSet.getString("adresse"),
                         resultSet.getString("email"),
-                        resultSet.getString("telephone")
+                        resultSet.getString("telephone"),
+                        Integer.parseInt(resultSet.getString("pretActuel")),
+                        Integer.parseInt(resultSet.getString("nombrePret"))
                 ));
             }
         }catch (Exception exception){
@@ -71,7 +73,9 @@ public class LecteurRepository {
                     resultSet.getDate("naissance"),
                     resultSet.getString("adresse"),
                     resultSet.getString("email"),
-                    resultSet.getString("telephone")
+                    resultSet.getString("telephone"),
+                    Integer.parseInt(resultSet.getString("pretActuel")),
+                    Integer.parseInt(resultSet.getString("nombrePret"))
             );
         }
 
@@ -115,4 +119,48 @@ public class LecteurRepository {
         }
     }
 
+    public void incrementerNbPret(String numero) throws SQLException {
+        Lecteur lecteur = getLecteurByNumero(numero);
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = "UPDATE lecteurs SET pretActuel='"+ (lecteur.getPretActuel() + 1) +"',nombrePret='"+ (lecteur.getNombrePret() +1) +"'" +
+                "WHERE numero='"+ numero +"'";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.execute();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
+    }
+
+    public ObservableList<String> getLecteursElligible() {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+
+        ObservableList<String> listLecteur = FXCollections.observableArrayList();
+        String query = "SELECT * FROM lecteurs WHERE pretActuel < 3";
+        try{
+            PreparedStatement statement = connection.prepareStatement(query);
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                Lecteur lecteur = new Lecteur(
+                            Integer.parseInt(resultSet.getString("numero")),
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom"),
+                        resultSet.getDate("naissance"),
+                        resultSet.getString("adresse"),
+                        resultSet.getString("email"),
+                        resultSet.getString("telephone"),
+                        Integer.parseInt(resultSet.getString("pretActuel")),
+                        Integer.parseInt(resultSet.getString("nombrePret"))
+                        );
+                listLecteur.add(lecteur.getNumero() + " " + lecteur.getNom() + " " + lecteur.getPrenom());
+            }
+        }catch (Exception exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
+        return listLecteur;
+    }
 }

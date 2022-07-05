@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="264.0" prefWidth="443.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bibliotheque.Controller.AddPretController">
+   <children>
+      <Pane prefHeight="94.0" prefWidth="451.0" style="-fx-background-color: rgb(63, 61, 86);">
+         <children>
+            <Label alignment="CENTER" layoutX="104.0" layoutY="31.0" prefHeight="34.0" prefWidth="218.0" text="Nouveau Pret" textFill="WHITE">
+               <font>
+                  <Font name="Verdana" size="27.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="14.0" layoutY="127.0" prefHeight="18.0" prefWidth="52.0" text="Lecteur" />
+      <Label layoutX="14.0" layoutY="159.0" prefHeight="18.0" prefWidth="42.0" text="Livre" />
+      <Label layoutX="14.0" layoutY="191.0" prefHeight="18.0" prefWidth="98.0" text="Date de pret" />
+      <DatePicker fx:id="datePretField" layoutX="95.0" layoutY="188.0" prefHeight="26.0" prefWidth="335.0" />
+      <ChoiceBox fx:id="livrePretTitreAndNumeroField" layoutX="95.0" layoutY="156.0" prefHeight="26.0" prefWidth="335.0" />
+      <ChoiceBox fx:id="lecteurNomAndNumeroField" layoutX="95.0" layoutY="124.0" prefHeight="26.0" prefWidth="335.0" />
+      <Button fx:id="enregistrerPretBtn" layoutX="119.0" layoutY="223.0" mnemonicParsing="false" onAction="#savePret" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #00BFA6;" text="Enregistrer" textFill="WHITE" />
+      <Button fx:id="cancelButton" layoutX="279.0" layoutY="223.0" mnemonicParsing="false" onAction="#cancel" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #F50057;" text="Annuler" textFill="WHITE" />
+   </children>
+</AnchorPane>

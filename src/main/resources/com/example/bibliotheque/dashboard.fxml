@@ -112,7 +112,33 @@
           </Tab>
             <Tab id="pretsOnglet" fx:id="pretsOnglet">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="5.0" layoutY="14.0" prefHeight="0.0" prefWidth="201.0" text="Prets" textFill="#3f3d56">
+                           <font>
+                              <Font name="Verdana" size="44.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="366.0" fitWidth="403.0" layoutX="689.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/pret.png" />
+                           </image>
+                        </ImageView>
+                        <TableView layoutX="6.0" layoutY="218.0" prefHeight="426.0" prefWidth="1084.0">
+                          <columns>
+                            <TableColumn prefWidth="56.80000305175781" text="N°" />
+                            <TableColumn prefWidth="198.4000244140625" text="designation" />
+                              <TableColumn prefWidth="134.39999389648438" text="autheur" />
+                              <TableColumn prefWidth="204.0" text="lecteur" />
+                              <TableColumn prefWidth="84.79998779296875" text="date de pret" />
+                              <TableColumn prefWidth="107.20001220703125" text="date retour" />
+                              <TableColumn prefWidth="104.0" text="status" />
+                              <TableColumn prefWidth="189.5999755859375" text="Actions" />
+                          </columns>
+                        </TableView>
+                        <Button fx:id="nouveauPretBtn" layoutX="14.0" layoutY="176.0" mnemonicParsing="false" onAction="#getAddPretView" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #00BFA6;" text="Nouveau" textFill="WHITE" />
+                        <Button layoutX="133.0" layoutY="175.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: rgb(63, 61, 86);" text="Actualiser" textFill="WHITE" />
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab id="lecteurDetailsOnglet" fx:id="lecteurDetailsOnglet">
