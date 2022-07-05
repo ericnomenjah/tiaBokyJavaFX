@@ -62,7 +62,7 @@
                               <TableColumn id="manage" fx:id="manageLecteurCol" prefWidth="192.0" text="Manage" />
                           </columns>
                         </TableView>
-                        <ImageView fitHeight="169.0" fitWidth="222.0" layoutX="692.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="169.0" fitWidth="222.0" layoutX="853.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/lecteurs.png" />
                            </image>
@@ -88,12 +88,12 @@
                               <Font size="43.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="214.0" fitWidth="298.0" layoutX="770.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="156.0" fitWidth="214.0" layoutX="854.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/livres.png" />
                            </image>
                         </ImageView>
-                        <TableView id="livresTable" fx:id="livresTable" layoutX="12.0" layoutY="206.0" prefHeight="433.0" prefWidth="1084.0">
+                        <TableView id="livresTable" fx:id="livresTable" layoutX="7.0" layoutY="173.0" prefHeight="467.0" prefWidth="1089.0">
                           <columns>
                             <TableColumn id="numeroLivreCol" fx:id="numeroLivreCol" prefWidth="52.80006408691406" text="N°" />
                             <TableColumn id="titreLivreCol" fx:id="titreLivreCol" prefWidth="307.1999816894531" text="Titre" />
@@ -105,8 +105,8 @@
                           </columns>
                         </TableView>
                         <Label layoutX="12.0" layoutY="88.0" text="Tous les livres de TiaBoky " textFill="#3f3d56" />
-                        <Button fx:id="nouveauLivre" layoutX="14.0" layoutY="164.0" mnemonicParsing="false" onAction="#getAddLivreView" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #00BFA6;" text="Nouveau" textFill="WHITE" />
-                        <Button fx:id="actualiserLivresbtn" layoutX="128.0" layoutY="164.0" mnemonicParsing="false" onAction="#actualiserLivre" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(63, 61, 86);" text="Actualiser" textFill="WHITE" />
+                        <Button fx:id="nouveauLivre" layoutX="14.0" layoutY="132.0" mnemonicParsing="false" onAction="#getAddLivreView" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: #00BFA6;" text="Nouveau" textFill="WHITE" />
+                        <Button fx:id="actualiserLivresbtn" layoutX="128.0" layoutY="133.0" mnemonicParsing="false" onAction="#actualiserLivre" prefHeight="26.0" prefWidth="98.0" style="-fx-background-color: rgb(63, 61, 86);" text="Actualiser" textFill="WHITE" />
                      </children></AnchorPane>
             </content>
           </Tab>
@@ -119,25 +119,25 @@
                               <Font name="Verdana" size="44.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="366.0" fitWidth="403.0" layoutX="689.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="186.0" fitWidth="307.0" layoutX="783.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/pret.png" />
                            </image>
                         </ImageView>
-                        <TableView layoutX="6.0" layoutY="218.0" prefHeight="426.0" prefWidth="1084.0">
+                        <TableView id="pretsTables" fx:id="pretsTable" layoutX="6.0" layoutY="169.0" prefHeight="476.0" prefWidth="1084.0">
                           <columns>
-                            <TableColumn prefWidth="56.80000305175781" text="N°" />
-                            <TableColumn prefWidth="198.4000244140625" text="designation" />
-                              <TableColumn prefWidth="134.39999389648438" text="autheur" />
-                              <TableColumn prefWidth="204.0" text="lecteur" />
-                              <TableColumn prefWidth="84.79998779296875" text="date de pret" />
-                              <TableColumn prefWidth="107.20001220703125" text="date retour" />
-                              <TableColumn prefWidth="104.0" text="status" />
-                              <TableColumn prefWidth="189.5999755859375" text="Actions" />
+                            <TableColumn fx:id="numeroPretCol" prefWidth="56.80000305175781" text="N°" />
+                            <TableColumn fx:id="designationPretCol" prefWidth="198.4000244140625" text="designation" />
+                              <TableColumn fx:id="autheurPretCol" prefWidth="134.39999389648438" text="autheur" />
+                              <TableColumn fx:id="lecteurPretCol" prefWidth="204.0" text="lecteur" />
+                              <TableColumn fx:id="datePretCol" prefWidth="84.79998779296875" text="date de pret" />
+                              <TableColumn fx:id="dateRetourCol" prefWidth="107.20001220703125" text="date retour" />
+                              <TableColumn fx:id="statusPretCol" prefWidth="104.0" text="status" />
+                              <TableColumn fx:id="actionPretCol" prefWidth="189.5999755859375" text="Actions" />
                           </columns>
                         </TableView>
-                        <Button fx:id="nouveauPretBtn" layoutX="14.0" layoutY="176.0" mnemonicParsing="false" onAction="#getAddPretView" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #00BFA6;" text="Nouveau" textFill="WHITE" />
-                        <Button layoutX="133.0" layoutY="175.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: rgb(63, 61, 86);" text="Actualiser" textFill="WHITE" />
+                        <Button fx:id="nouveauPretBtn" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" onAction="#getAddPretView" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #00BFA6;" text="Nouveau" textFill="WHITE" />
+                        <Button layoutX="134.0" layoutY="132.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: rgb(63, 61, 86);" text="Actualiser" textFill="WHITE" />
                      </children></AnchorPane>
                </content>
             </Tab>

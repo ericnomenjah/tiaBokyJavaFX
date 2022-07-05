@@ -3,8 +3,10 @@ package com.example.bibliotheque.Controller;
 import com.example.bibliotheque.Application;
 import com.example.bibliotheque.Model.Lecteur;
 import com.example.bibliotheque.Model.Livre;
+import com.example.bibliotheque.Model.Pret;
 import com.example.bibliotheque.Repository.LecteurRepository;
 import com.example.bibliotheque.Repository.LivreRepository;
+import com.example.bibliotheque.Repository.PretRepository;
 import com.example.bibliotheque.View.AddLecteurModal;
 import com.example.bibliotheque.View.AddLivreModal;
 import com.example.bibliotheque.View.AddPretModal;
@@ -77,6 +79,27 @@ public class DashboardController implements Initializable {
     @FXML
     private TableColumn<Livre, String> manageLivreCol;
     ObservableList<Livre> listLivres;
+
+    @FXML
+    private TableView<Pret> pretsTable;
+    @FXML
+    private TableColumn numeroPretCol;
+    @FXML
+    private TableColumn designationPretCol;
+    @FXML
+    private TableColumn autheurPretCol;
+    @FXML
+    private TableColumn lecteurPretCol;
+    @FXML
+    private TableColumn datePretCol;
+    @FXML
+    private TableColumn dateRetourCol;
+    @FXML
+    private TableColumn statusPretCol;
+    @FXML
+    private TableColumn actionPretCol;
+    ObservableList listPrets;
+
 
     @FXML
     void getLecteursView(ActionEvent event) {
@@ -220,7 +243,61 @@ public class DashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initialiserLecteurTable();
         initialiserLivreTable();
+        initialiserPretTable();
+    }
 
+    private void initialiserPretTable() {
+        actualiserPretTable();
+
+        numeroPretCol.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        designationPretCol.setCellValueFactory(new PropertyValueFactory<>("designation"));
+        autheurPretCol.setCellValueFactory(new PropertyValueFactory<>("autheur"));
+        lecteurPretCol.setCellValueFactory(new PropertyValueFactory<>("lecteur"));
+        datePretCol.setCellValueFactory(new PropertyValueFactory<>("datePret"));
+        dateRetourCol.setCellValueFactory(new PropertyValueFactory<>("dateRetour"));
+        statusPretCol.setCellValueFactory(new PropertyValueFactory<>("rendu"));
+
+        Callback<TableColumn<Pret, String>,TableCell<Pret, String>> cellFactory = (TableColumn<Pret,String> param)->{
+            final TableCell<Pret, String> cell = new TableCell<Pret,String>(){
+                @Override
+                public void updateItem(String item, boolean empty){
+                    super.updateItem(item,empty);
+                    if(empty){
+                        setGraphic(null);
+                        setText(null);
+                    }else{
+                        Button btnRendre = new Button("rendre");
+                        Button btnDelete = new Button("supprimer");
+
+                        btnRendre.setStyle("-fx-cursor: hand;-fx-text-fill: #ffffff ;-fx-background-color: #00BFA6 ");
+                        btnDelete.setStyle("-fx-cursor: hand; -fx-text-fill: #fff ; -fx-background-color:  #F50057 ");
+
+                        btnRendre.setOnMouseClicked((MouseEvent event)->{
+
+                        });
+
+                        btnDelete.setOnMouseClicked((MouseEvent event)->{
+
+                        });
+
+                        HBox container = new HBox(btnRendre,btnDelete);
+                        container.setStyle("-fx-alignment:center");
+                        HBox.setMargin(btnRendre, new Insets(1, 1, 1, 1));
+                        HBox.setMargin(btnDelete, new Insets(1, 1, 1, 1));
+                        setGraphic(container);
+                        setText(null);
+                    }
+                }
+            };
+            return cell;
+        };
+        actionPretCol.setCellFactory(cellFactory);
+    }
+
+    private void actualiserPretTable() {
+        PretRepository pretRepository = new PretRepository();
+        listPrets = pretRepository.getPrets();
+        pretsTable.setItems(listPrets);
     }
 
     private void initialiserLecteurTable(){
