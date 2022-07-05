@@ -60,4 +60,25 @@ public class PretRepository {
         }
         return list;
     }
+
+    public void rendre(int numero, int numeroLecteur, int numeroLivre) {
+
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = "UPDATE prets SET rendu='1' WHERE numero="+ numero;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.execute();
+
+            LivreRepository livreRepository = new LivreRepository();
+            livreRepository.rendreDisponible(numeroLivre);
+
+            LecteurRepository lecteurRepository = new LecteurRepository();
+            lecteurRepository.decrementerPretActuel(numeroLecteur);
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
+
+    }
 }

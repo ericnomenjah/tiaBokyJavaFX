@@ -29,6 +29,9 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class DashboardController implements Initializable {
@@ -238,6 +241,10 @@ public class DashboardController implements Initializable {
     void actualiserLivre(ActionEvent event) {
         actualiserLivreTable();
     }
+    @FXML
+    void actualiserPretTable(ActionEvent event) {
+        actualiserPretTable();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -262,28 +269,35 @@ public class DashboardController implements Initializable {
                 @Override
                 public void updateItem(String item, boolean empty){
                     super.updateItem(item,empty);
+                    
                     if(empty){
                         setGraphic(null);
                         setText(null);
                     }else{
                         Button btnRendre = new Button("rendre");
-                        Button btnDelete = new Button("supprimer");
 
                         btnRendre.setStyle("-fx-cursor: hand;-fx-text-fill: #ffffff ;-fx-background-color: #00BFA6 ");
-                        btnDelete.setStyle("-fx-cursor: hand; -fx-text-fill: #fff ; -fx-background-color:  #F50057 ");
 
                         btnRendre.setOnMouseClicked((MouseEvent event)->{
-
+                            Pret pret = pretsTable.getSelectionModel().getSelectedItem();
+                            LocalDate dateDuJour = LocalDate.now();
+                            LocalDate retourPrevu = LocalDate.parse(pret.getDateRetour(), DateTimeFormatter.ISO_LOCAL_DATE);
+                            Duration diff = Duration.between(retourPrevu.atStartOfDay(),dateDuJour.atStartOfDay());
+                            long diffDays = diff.toDays();
+                            if(diffDays>0){
+                                Alert alert = new Alert(Alert.AlertType.WARNING, "Livre rendu en retard, le lecteur doit payer une amende de 5000 Ariary !");
+                                alert.show();
+                            }else{
+                                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Livre rendu");
+                                alert.show();
+                            }
+                            PretRepository pretRepository = new PretRepository();
+                            pretRepository.rendre(pret.getNumero(),pret.getNumeroLecteur(),pret.getNumeroLivre());
                         });
 
-                        btnDelete.setOnMouseClicked((MouseEvent event)->{
-
-                        });
-
-                        HBox container = new HBox(btnRendre,btnDelete);
+                        HBox container = new HBox(btnRendre);
                         container.setStyle("-fx-alignment:center");
                         HBox.setMargin(btnRendre, new Insets(1, 1, 1, 1));
-                        HBox.setMargin(btnDelete, new Insets(1, 1, 1, 1));
                         setGraphic(container);
                         setText(null);
                     }
@@ -323,7 +337,6 @@ public class DashboardController implements Initializable {
                         Button btnSupprimerLecteur = new Button("Supprimer");
 
                         btnVoirLecteur.setStyle("-fx-cursor: hand;-fx-text-fill: #ffffff ;-fx-background-color: #00BFA6 ");
-                        btnSupprimerLecteur.setStyle("-fx-cursor: hand; -fx-text-fill: #fff ; -fx-background-color:  #F50057 ");
 
                         btnSupprimerLecteur.setOnMouseClicked((MouseEvent event) ->{
                             Lecteur lecteur = lecteursTable.getSelectionModel().getSelectedItem();
@@ -371,7 +384,7 @@ public class DashboardController implements Initializable {
         nbPretLivreCol.setCellValueFactory(new PropertyValueFactory<Livre, String>("nbPret"));
 
         Callback<TableColumn<Livre, String>, TableCell<Livre, String>> cellFactory = (TableColumn<Livre, String> param) -> {
-//Make cell containing buttons
+
             final TableCell<Livre, String> cell = new TableCell<Livre, String>(){
                 @Override
                 public void updateItem(String item, boolean empty){
@@ -384,7 +397,6 @@ public class DashboardController implements Initializable {
                         Button btnSupprimerLivre = new Button("Supprimer");
 
                         btnVoirLivre.setStyle("-fx-cursor: hand;-fx-text-fill: #ffffff ;-fx-background-color: #00BFA6 ");
-                        btnSupprimerLivre.setStyle("-fx-cursor: hand; -fx-text-fill: #fff ; -fx-background-color:  #F50057 ");
 
                         btnSupprimerLivre.setOnMouseClicked((MouseEvent event) ->{
                             Livre livre = livresTable.getSelectionModel().getSelectedItem();
@@ -404,7 +416,6 @@ public class DashboardController implements Initializable {
                             disponibleLivreDetailLabel.setText(livre.getFormattedDisponible());
                             nbPretLivreDetailLabel.setText(String.valueOf(livre.getNbPret()));
                         });
-
                         HBox voirBtnContainer = new HBox(btnVoirLivre,btnSupprimerLivre);
                         voirBtnContainer.setStyle("-fx-alignment:center");
                         HBox.setMargin(btnVoirLivre, new Insets(1, 1, 1, 1));

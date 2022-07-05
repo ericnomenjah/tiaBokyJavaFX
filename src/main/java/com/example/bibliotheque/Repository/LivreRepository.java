@@ -148,4 +148,17 @@ public class LivreRepository {
             exception.getCause();
         }
     }
+
+    public void rendreDisponible(int numeroLivre) {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = " UPDATE livres SET disponible='1' WHERE numero="+ numeroLivre;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.execute();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
+    }
 }

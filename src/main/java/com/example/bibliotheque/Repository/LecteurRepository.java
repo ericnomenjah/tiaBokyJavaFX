@@ -60,7 +60,6 @@ public class LecteurRepository {
         DatabaseConnection databaseConnection = new DatabaseConnection();
         Connection connection = databaseConnection.getConnection();
         String query = "SELECT * from lecteurs WHERE numero="+ numero;
-        System.out.println(query);
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         ResultSet resultSet = preparedStatement.executeQuery(query);
         Lecteur lecteur = null;
@@ -162,5 +161,18 @@ public class LecteurRepository {
             exception.getCause();
         }
         return listLecteur;
+    }
+
+    public void decrementerPretActuel(int numeroLecteur) {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = "UPDATE lecteurs SET pretActuel=(pretActuel-1) WHERE numero="+numeroLecteur;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.execute();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
     }
 }

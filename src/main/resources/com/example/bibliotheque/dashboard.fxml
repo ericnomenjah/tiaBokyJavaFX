@@ -137,7 +137,7 @@
                           </columns>
                         </TableView>
                         <Button fx:id="nouveauPretBtn" layoutX="14.0" layoutY="131.0" mnemonicParsing="false" onAction="#getAddPretView" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #00BFA6;" text="Nouveau" textFill="WHITE" />
-                        <Button layoutX="134.0" layoutY="132.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: rgb(63, 61, 86);" text="Actualiser" textFill="WHITE" />
+                        <Button fx:id="actualiserPretBtn" layoutX="134.0" layoutY="132.0" mnemonicParsing="false" onAction="#actualiserPretTable" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: rgb(63, 61, 86);" text="Actualiser" textFill="WHITE" />
                      </children></AnchorPane>
                </content>
             </Tab>
